@@ -13,15 +13,15 @@
             margin: 0;
             background-color: #ffeef2;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            overflow: hidden;
             text-align: center;
         }
 
         .container {
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-width: 300px;
         }
 
         h1 { color: #d63384; margin-bottom: 20px; }
@@ -40,25 +40,19 @@
         }
 
         #siBtn { background-color: #ff4d6d; color: white; margin-right: 10px; }
-        #siBtn:hover { transform: scale(1.1); background-color: #ff758f; }
-
-        #noBtn {
-            background-color: #adb5bd;
-            color: white;
-            position: absolute;
-        }
+        #noBtn { background-color: #adb5bd; color: white; position: absolute; }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" id="mainCard">
         <h1 id="pregunta">¿Quieres ser mi novia? 🌹</h1>
         
-        <div class="gif-container">
-            <img id="imgGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Puppy Love">
+        <div id="visual" class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Puppy">
         </div>
 
-        <div class="buttons">
+        <div class="buttons" id="controles">
             <button id="siBtn">¡SÍ!</button>
             <button id="noBtn">No</button>
         </div>
@@ -67,23 +61,23 @@
     <script>
         const noBtn = document.getElementById('noBtn');
         const siBtn = document.getElementById('siBtn');
-        const pregunta = document.getElementById('pregunta');
-        const gif = document.getElementById('imgGif');
+        const mainCard = document.getElementById('mainCard');
 
         // Función para mover el botón "No"
         noBtn.addEventListener('mouseover', () => {
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            
             noBtn.style.left = `${x}px`;
             noBtn.style.top = `${y}px`;
         });
 
-        // Lo que pasa cuando dice que SÍ
+        // ACCIÓN DEFINITIVA AL DECIR QUE SÍ
         siBtn.addEventListener('click', () => {
-            pregunta.innerHTML = "¡SABÍA QUE DIRÍAS QUE SÍ! ❤️ 😍";
-            gif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R4eG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l41lH4ADRtAYnGsLe/giphy.gif"; // GIF de celebración
-            noBtn.style.display = 'none';
+            // Borramos TODO lo que hay dentro de la tarjeta blanca
+            mainCard.innerHTML = `
+                <h1 style="font-size: 2.5rem;">¡SABÍA QUE DIRÍAS QUE SÍ! ❤️ 😍</h1>
+                <p style="font-size: 1.2rem; color: #d63384;">Eres lo mejor que me ha pasado.</p>
+            `;
         });
     </script>
 </body>
