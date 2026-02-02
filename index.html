@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Quieres ser mi novia? ❤️</title>
     <style>
+        /* Usamos fuentes del sistema que son limpias y modernas */
         body {
             display: flex;
             justify-content: center;
@@ -12,7 +13,7 @@
             height: 100vh;
             margin: 0;
             background-color: #ffeef2;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             text-align: center;
             transition: background-color 0.8s ease;
         }
@@ -22,26 +23,29 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-width: 320px;
+            width: 85%;
+            max-width: 400px;
             position: relative;
         }
 
-        h1 { color: #d63384; margin-bottom: 20px; }
+        /* Título inicial con un toque de color */
+        h1 { color: #d63384; font-weight: 700; margin-bottom: 20px; }
         
-        #imgInicial { width: 200px; border-radius: 15px; margin-bottom: 20px; }
+        #imgInicial { width: 100%; max-width: 200px; border-radius: 15px; margin-bottom: 20px; }
 
         .buttons { 
             margin-top: 20px; 
             display: flex; 
             justify-content: center; 
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             height: 60px; 
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -49,12 +53,11 @@
         }
 
         #siBtn { background-color: #ff4d6d; color: white; z-index: 10; }
-        #siBtn:hover { transform: scale(1.1); background-color: #ff758f; }
 
         #noBtn {
             background-color: #adb5bd;
             color: white;
-            position: relative; /* Cambia a absolute dinámicamente en JS */
+            position: relative;
         }
     </style>
 </head>
@@ -75,31 +78,30 @@
 
     <script>
         let intentos = 0;
-        const limiteIntentos = 5; // Cantidad de veces que se moverá antes de desaparecer
+        const limiteIntentos = 5;
 
         function intentarMover() {
             const btn = document.getElementById('noBtn');
             intentos++;
 
             if (intentos <= limiteIntentos) {
-                // Hacer que el botón se mueva por toda la pantalla
                 btn.style.position = "fixed";
                 const x = Math.random() * (window.innerWidth - btn.offsetWidth);
                 const y = Math.random() * (window.innerHeight - btn.offsetHeight);
                 btn.style.left = x + 'px';
                 btn.style.top = y + 'px';
             } else {
-                // Después de los intentos, el botón desaparece
                 btn.style.display = "none";
             }
         }
 
         function aceptar() {
+            // Reemplazo con fuente Sans-Serif moderna y sin cursivas
             document.getElementById('tarjeta').innerHTML = `
-                <h1 style="font-size: 2.2rem; color: #d63384; margin-bottom: 10px;">
+                <h1 style="font-family: sans-serif; font-size: 1.8rem; color: #d63384; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; margin-bottom: 15px;">
                     ¡SABÍA QUE DIRÍAS QUE SÍ! ❤️
                 </h1>
-                <p style="font-size: 1.8rem; color: #ff4d6d; margin: 0;">
+                <p style="font-family: sans-serif; font-size: 1.5rem; color: #ff4d6d; font-weight: 600; margin: 0;">
                     Te quiero ❤️
                 </p>
             `;
