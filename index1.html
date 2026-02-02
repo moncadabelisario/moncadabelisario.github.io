@@ -19,13 +19,15 @@
 
         .container {
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 80%;
         }
 
-        h1 { color: #d63384; margin-bottom: 20px; }
+        h1 { color: #d63384; margin-bottom: 20px; transition: all 0.5s ease; }
         
+        /* Contenedor del GIF inicial */
         .gif-container img { width: 200px; border-radius: 10px; }
 
         .buttons { margin-top: 30px; position: relative; height: 60px; }
@@ -54,11 +56,11 @@
     <div class="container">
         <h1 id="pregunta">¿Quieres ser mi novia? 🌹</h1>
         
-        <div class="gif-container">
-            <img id="imgGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Puppy Love">
+        <div id="contenedorGif" class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Puppy Love">
         </div>
 
-        <div class="buttons">
+        <div class="buttons" id="botonesContainer">
             <button id="siBtn">¡SÍ!</button>
             <button id="noBtn">No</button>
         </div>
@@ -68,7 +70,8 @@
         const noBtn = document.getElementById('noBtn');
         const siBtn = document.getElementById('siBtn');
         const pregunta = document.getElementById('pregunta');
-        const gif = document.getElementById('imgGif');
+        const contenedorGif = document.getElementById('contenedorGif');
+        const botonesContainer = document.getElementById('botonesContainer');
 
         // Función para mover el botón "No"
         noBtn.addEventListener('mouseover', () => {
@@ -81,8 +84,13 @@
 
         // Lo que pasa cuando dice que SÍ
         siBtn.addEventListener('click', () => {
+            // Quitamos el GIF y los botones
+            contenedorGif.style.display = 'none';
+            botonesContainer.style.display = 'none';
+            
+            // Cambiamos el texto
             pregunta.innerHTML = "¡SABÍA QUE DIRÍAS QUE SÍ! ❤️ 😍";
-            noBtn.style.display = 'none';
+            pregunta.style.fontSize = "2.5rem";
         });
     </script>
 </body>
