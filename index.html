@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi novia? ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffeef2;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 { color: #d63384; margin-bottom: 20px; }
+        
+        .gif-container img { width: 200px; border-radius: 10px; }
+
+        .buttons { margin-top: 30px; position: relative; height: 60px; }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #siBtn { background-color: #ff4d6d; color: white; margin-right: 10px; }
+        #siBtn:hover { transform: scale(1.1); background-color: #ff758f; }
+
+        #noBtn {
+            background-color: #adb5bd;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="pregunta">¿Quieres ser mi novia? 🌹</h1>
+        
+        <div class="gif-container">
+            <img id="imgGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Puppy Love">
+        </div>
+
+        <div class="buttons">
+            <button id="siBtn">¡SÍ!</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const siBtn = document.getElementById('siBtn');
+        const pregunta = document.getElementById('pregunta');
+        const gif = document.getElementById('imgGif');
+
+        // Función para mover el botón "No"
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+
+        // Lo que pasa cuando dice que SÍ
+        siBtn.addEventListener('click', () => {
+            pregunta.innerHTML = "¡SABÍA QUE DIRÍAS QUE SÍ! ❤️ 😍";
+            gif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R4eG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l41lH4ADRtAYnGsLe/giphy.gif"; // GIF de celebración
+            noBtn.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
