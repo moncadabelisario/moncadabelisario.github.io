@@ -23,13 +23,21 @@
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             min-width: 320px;
+            position: relative;
         }
 
         h1 { color: #d63384; margin-bottom: 20px; }
         
         #imgInicial { width: 200px; border-radius: 15px; margin-bottom: 20px; }
 
-        .buttons { margin-top: 20px; position: relative; height: 60px; }
+        .buttons { 
+            margin-top: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            gap: 20px;
+            height: 60px; 
+        }
 
         button {
             padding: 15px 30px;
@@ -40,13 +48,13 @@
             transition: 0.3s;
         }
 
-        #siBtn { background-color: #ff4d6d; color: white; }
+        #siBtn { background-color: #ff4d6d; color: white; z-index: 10; }
         #siBtn:hover { transform: scale(1.1); background-color: #ff758f; }
 
         #noBtn {
             background-color: #adb5bd;
             color: white;
-            position: absolute;
+            position: relative; /* Cambia a absolute dinámicamente en JS */
         }
     </style>
 </head>
@@ -60,22 +68,33 @@
 
             <div class="buttons">
                 <button id="siBtn" onclick="aceptar()">¡SÍ!</button>
-                <button id="noBtn" onmouseover="moverNo()">No</button>
+                <button id="noBtn" onmouseover="intentarMover()" onclick="intentarMover()">No</button>
             </div>
         </div>
     </div>
 
     <script>
-        function moverNo() {
+        let intentos = 0;
+        const limiteIntentos = 5; // Cantidad de veces que se moverá antes de desaparecer
+
+        function intentarMover() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            intentos++;
+
+            if (intentos <= limiteIntentos) {
+                // Hacer que el botón se mueva por toda la pantalla
+                btn.style.position = "fixed";
+                const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+                const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+                btn.style.left = x + 'px';
+                btn.style.top = y + 'px';
+            } else {
+                // Después de los intentos, el botón desaparece
+                btn.style.display = "none";
+            }
         }
 
         function aceptar() {
-            // Reemplazamos el contenido por los nuevos mensajes
             document.getElementById('tarjeta').innerHTML = `
                 <h1 style="font-size: 2.2rem; color: #d63384; margin-bottom: 10px;">
                     ¡SABÍA QUE DIRÍAS QUE SÍ! ❤️
@@ -84,8 +103,6 @@
                     Te quiero ❤️
                 </p>
             `;
-            
-            // Un cambio de color de fondo suave para celebrar
             document.getElementById('cuerpo').style.backgroundColor = "#ffc1cf";
         }
     </script>
