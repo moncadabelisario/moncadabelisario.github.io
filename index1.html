@@ -12,8 +12,9 @@
             height: 100vh;
             margin: 0;
             background-color: #ffeef2;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: sans-serif;
             text-align: center;
+            transition: background-color 0.5s ease;
         }
 
         .container {
@@ -21,14 +22,13 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-width: 300px;
         }
 
-        h1 { color: #d63384; margin-bottom: 20px; }
+        h1 { color: #d63384; }
         
-        .gif-container img { width: 200px; border-radius: 10px; }
+        #imgInicial { width: 200px; border-radius: 10px; margin-bottom: 20px; }
 
-        .buttons { margin-top: 30px; position: relative; height: 60px; }
+        .buttons { margin-top: 20px; position: relative; height: 60px; }
 
         button {
             padding: 15px 30px;
@@ -36,49 +36,43 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        #siBtn { background-color: #ff4d6d; color: white; margin-right: 10px; }
+        #siBtn { background-color: #ff4d6d; color: white; }
         #noBtn { background-color: #adb5bd; color: white; position: absolute; }
     </style>
 </head>
-<body>
+<body id="cuerpo">
 
-    <div class="container" id="mainCard">
-        <h1 id="pregunta">¿Quieres ser mi novia? 🌹</h1>
-        
-        <div id="visual" class="gif-container">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Puppy">
-        </div>
+    <div class="container" id="tarjeta">
+        <div id="contenidoTotal">
+            <h1 id="texto">¿Quieres ser mi novia? 🌹</h1>
+            
+            <img id="imgInicial" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5vNjJ0eG9pZXZoZGd4eXp5eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif">
 
-        <div class="buttons" id="controles">
-            <button id="siBtn">¡SÍ!</button>
-            <button id="noBtn">No</button>
+            <div class="buttons">
+                <button id="siBtn" onclick="aceptar()">¡SÍ!</button>
+                <button id="noBtn" onmouseover="moverNo()">No</button>
+            </div>
         </div>
     </div>
 
     <script>
-        const noBtn = document.getElementById('noBtn');
-        const siBtn = document.getElementById('siBtn');
-        const mainCard = document.getElementById('mainCard');
+        function moverNo() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
 
-        // Función para mover el botón "No"
-        noBtn.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
-        });
-
-        // ACCIÓN DEFINITIVA AL DECIR QUE SÍ
-        siBtn.addEventListener('click', () => {
-            // Borramos TODO lo que hay dentro de la tarjeta blanca
-            mainCard.innerHTML = `
-                <h1 style="font-size: 2.5rem;">¡SABÍA QUE DIRÍAS QUE SÍ! ❤️ 😍</h1>
-                <p style="font-size: 1.2rem; color: #d63384;">Eres lo mejor que me ha pasado.</p>
-            `;
-        });
+        function aceptar() {
+            // CAMBIO RADICAL: Borramos todo el HTML interno de la tarjeta
+            document.getElementById('tarjeta').innerHTML = "<h1 style='font-size: 3rem;'>¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h1>";
+            
+            // Cambiamos el fondo para confirmar visualmente el cambio
+            document.getElementById('cuerpo').style.backgroundColor = "#ffc1cf";
+        }
     </script>
 </body>
 </html>
