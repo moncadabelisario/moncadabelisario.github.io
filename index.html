@@ -12,9 +12,9 @@
             height: 100vh;
             margin: 0;
             background-color: #ffeef2;
-            font-family: sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
-            transition: background-color 0.5s ease;
+            transition: background-color 0.8s ease;
         }
 
         .container {
@@ -22,11 +22,12 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-width: 320px;
         }
 
-        h1 { color: #d63384; }
+        h1 { color: #d63384; margin-bottom: 20px; }
         
-        #imgInicial { width: 200px; border-radius: 10px; margin-bottom: 20px; }
+        #imgInicial { width: 200px; border-radius: 15px; margin-bottom: 20px; }
 
         .buttons { margin-top: 20px; position: relative; height: 60px; }
 
@@ -36,10 +37,17 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
+            transition: 0.3s;
         }
 
         #siBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { background-color: #adb5bd; color: white; position: absolute; }
+        #siBtn:hover { transform: scale(1.1); background-color: #ff758f; }
+
+        #noBtn {
+            background-color: #adb5bd;
+            color: white;
+            position: absolute;
+        }
     </style>
 </head>
 <body id="cuerpo">
@@ -67,10 +75,17 @@
         }
 
         function aceptar() {
-            // CAMBIO RADICAL: Borramos todo el HTML interno de la tarjeta
-            document.getElementById('tarjeta').innerHTML = "<h1 style='font-size: 3rem;'>¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h1>";
+            // Reemplazamos el contenido por los nuevos mensajes
+            document.getElementById('tarjeta').innerHTML = `
+                <h1 style="font-size: 2.2rem; color: #d63384; margin-bottom: 10px;">
+                    ¡SABÍA QUE DIRÍAS QUE SÍ! ❤️
+                </h1>
+                <p style="font-size: 1.8rem; color: #ff4d6d; margin: 0;">
+                    Te quiero ❤️
+                </p>
+            `;
             
-            // Cambiamos el fondo para confirmar visualmente el cambio
+            // Un cambio de color de fondo suave para celebrar
             document.getElementById('cuerpo').style.backgroundColor = "#ffc1cf";
         }
     </script>
